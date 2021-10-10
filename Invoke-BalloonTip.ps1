@@ -44,9 +44,9 @@
 
         [Parameter(HelpMessage="The message type: Info,Error,Warning,None")]
         [System.Windows.Forms.ToolTipIcon]$MessageType="Info",
-     
+
         [Parameter(HelpMessage="The path to a file to use its icon in the system tray")]
-        [string]$SysTrayIconPath='C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',     
+        [string]$SysTrayIconPath='C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',
 
         [Parameter(HelpMessage="The number of milliseconds to display the message.")]
         [int]$Duration=1000
