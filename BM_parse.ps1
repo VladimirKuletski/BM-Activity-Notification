@@ -1,6 +1,6 @@
 ﻿$VerbosePreference = "continue"
 
-[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") 
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
 . .\Invoke-BalloonTip.ps1
 
@@ -9,12 +9,12 @@ $ID_to_exclude = "1234567"
 
 Try{
     Do{
-        $WS = New-Object System.Net.WebSockets.ClientWebSocket                                                
+        $WS = New-Object System.Net.WebSockets.ClientWebSocket
         $CT = New-Object System.Threading.CancellationToken($false)
         $CTS = New-Object System.Threading.CancellationTokenSource
 
         $WS.Options.UseDefaultCredentials = $true
-        $Conn = $WS.ConnectAsync('wss://api.brandmeister.network/lh/%7D/?EIO=3&transport=websocket', $CTS.Token)                                                  
+        $Conn = $WS.ConnectAsync('wss://api.brandmeister.network/lh/%7D/?EIO=3&transport=websocket', $CTS.Token)
         While (!$Conn.IsCompleted) { Start-Sleep -Milliseconds 100 }
 
         Write-Verbose "Connected to BM"
@@ -28,16 +28,16 @@ Try{
         While ($WS.State -eq 'Open') {
 
             $RTM = ""
-        
+
             Do {
                 $Conn = $WS.ReceiveAsync($Recv, $CT)
                 While (!$Conn.IsCompleted) { Start-Sleep -Milliseconds 10 }
 
-                $Recv.Array[0..($Conn.Result.Count - 1)] | ForEach { $RTM += [char]$_ }
-       
+                $Recv.Array[0..($Conn.Result.Count - 1)] | ForEach-Object { $RTM += [char]$_ }
+
             } Until ($Conn.Result.Count -lt $Size)
-            
-            if (($RTM.Substring(0,2) -eq "42") -and ($RTM.IndexOf("Session-Update") -ne -1)) {  # additionally filtering for Session-Update, PS fails to convert to json on Session-Start 
+
+            if (($RTM.Substring(0,2) -eq "42") -and ($RTM.IndexOf("Session-Update") -ne -1)) {  # additionally filtering for Session-Update, PS fails to convert to json on Session-Start
                 $RTM = $RTM.Substring(10,$RTM.Length-1-10) # cut BM message type
                 $RTM = ($RTM | convertfrom-json) # convert to json object
                 $RTM = ($RTM.payload | convertfrom-json) # extract "payload" string and convert to json object - should be a better way
@@ -60,12 +60,12 @@ Try{
                     $last_message_id = $RTM.SessionID
                 }
             }
-        }   
+        }
     } Until (!$Conn)
 
 }Finally{
 
-    If ($WS) { 
+    If ($WS) {
         Write-Verbose "Closing websocket"
         $WS.Dispose()
     }
