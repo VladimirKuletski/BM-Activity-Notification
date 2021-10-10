@@ -46,7 +46,7 @@ Try{
                     # Write-Verbose $RTM
                     if ($RTM.SourceName) {
                         Write-Verbose "$($RTM.SourceCall + ' ' + $RTM.SourceName)"
-                        Invoke-BalloonTip -Message "$($RTM.SourceCall + ' ' + $RTM.SourceName)" -Title "Attention" -Duration=2000
+                        Invoke-BalloonTip -Message "$($RTM.SourceCall + ' ' + $RTM.SourceName)" -Title "Attention" -Duration 2000
                     }
                     elseif ($RTM.TalkerAlias){
                         Write-Verbose $RTM.TalkerAlias
