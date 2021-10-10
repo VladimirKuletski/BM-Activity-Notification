@@ -46,15 +46,15 @@ Try{
                     # Write-Verbose $RTM
                     if ($RTM.SourceName) {
                         Write-Verbose "$($RTM.SourceCall + ' ' + $RTM.SourceName)"
-                        Invoke-BalloonTip{Message="$($RTM.SourceCall + ' ' + $RTM.SourceName)"; Title="Attention"; Duration=2000}
+                        Invoke-BalloonTip -Message "$($RTM.SourceCall + ' ' + $RTM.SourceName)" -Title "Attention" -Duration=2000
                     }
                     elseif ($RTM.TalkerAlias){
                         Write-Verbose $RTM.TalkerAlias
-                        Invoke-BalloonTip{Message="$RTM.TalkerAlias"; Title="Attention"; Duration=2000}
+                        Invoke-BalloonTip -Message "$RTM.TalkerAlias" -Title "Attention" -Duration 2000
                     }
                     else {
                         Write-Verbose $RTM.SourceID
-                        Invoke-BalloonTip{Message="$RTM.SourceID"; Title="Attention"; Duration=2000}
+                        Invoke-BalloonTip -Message "$RTM.SourceID" -Title "Attention" -Duration 2000
                     }
 
                     $last_message_id = $RTM.SessionID
