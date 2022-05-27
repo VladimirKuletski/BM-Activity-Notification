@@ -1,4 +1,4 @@
-# BM-Avtivity-Notification
+# BM-Activity-Notification
 
 #Stopped working after BM change to use Socket.IO library. Need to check if PowerShell is capable to work with it OOB
 
