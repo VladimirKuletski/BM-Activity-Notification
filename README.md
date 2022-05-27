@@ -1,6 +1,6 @@
 # BM-Activity-Notification
 
-#Stopped working after BM change to use Socket.IO library. Need to check if PowerShell is capable to work with it OOB
+# Stopped working after BM change to use Socket.IO library. Need to check if PowerShell is capable to work with it OOB
 
 Prototype for parsing BM activity messages using PowerShell (more or less native on Windows).
 WS connection used.
